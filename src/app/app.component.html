@@ -1,0 +1,21 @@
+<ul>
+  <li *ngFor="let data of mockData">
+    {{ data.info }}
+    <ng-container
+      [ngTemplateOutlet]="children"
+      [ngTemplateOutletContext]="{data: data}"
+    ></ng-container>
+  </li>
+</ul>
+
+<ng-template #children let-data="data">
+  <ul>
+    <li *ngFor="let child of data?.children">
+      {{ child.info }}
+      <ng-container
+        [ngTemplateOutlet]="children"
+        [ngTemplateOutletContext]="{data: child}"
+      ></ng-container>
+    </li>
+  </ul>
+</ng-template>
